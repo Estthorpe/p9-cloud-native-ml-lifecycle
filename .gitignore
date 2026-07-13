@@ -3,3 +3,6 @@ infra/*.json
 # Python
 .venv/
 __pycache__/
+
+# Local environment overrides
+.env
