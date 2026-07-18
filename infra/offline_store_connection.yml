@@ -1,0 +1,6 @@
+﻿$schema: http://azureml/sdk-2-0/Connection.json
+name: offlineStoreConnectionName
+type: azure_data_lake_gen2
+target: abfss://offline-store@stclariv2v2zea7e6dd42.dfs.core.windows.net/
+credentials:
+  type: none

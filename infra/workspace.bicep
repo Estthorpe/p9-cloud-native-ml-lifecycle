@@ -94,7 +94,7 @@ resource acr 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' = {
 //   storageAccount, keyVault, applicationInsights, containerRegistry
 //   (each takes a resource ID)
 
-// <<< WRITE THE WORKSPACE RESOURCE BLOCK HERE >>>
+
 resource workspace 'Microsoft.MachineLearningServices/workspaces@2024-10-01' = {
   name: workspaceName
   location: location
