@@ -4,3 +4,4 @@ pytest==8.3.4
 pydantic-settings==2.7.0
 structlog==24.4.0
 pandas==2.2.3
+azureml-featurestore==1.2.1

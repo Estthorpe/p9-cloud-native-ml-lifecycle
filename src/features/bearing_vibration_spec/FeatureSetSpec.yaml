@@ -1,0 +1,22 @@
+﻿$schema: http://azureml/sdk-2-0/FeatureSetSpec.json
+source:
+  type: csv
+  path: abfss://datalake@stclariv2v2zea7e6dd42.dfs.core.windows.net/raw/sensor_data_real.csv
+  timestamp_column:
+    name: timestamp
+feature_transformation:
+  transformation_code:
+    path: ./transformations
+    transformer_class: transform.BearingVibrationTransformer
+features:
+  - name: rms_value
+    type: double
+  - name: rolling_mean_1h
+    type: double
+  - name: rolling_std_1h
+    type: double
+  - name: deviation_from_baseline
+    type: double
+index_columns:
+  - name: device_id
+    type: string

@@ -1,0 +1,7 @@
+﻿$schema: http://azureml/sdk-2-0/FeatureStoreEntity.json
+name: bearing
+version: "1"
+description: A monitored bearing on the NASA IMS test rig, identified by device_id.
+index_columns:
+  - name: device_id
+    type: string

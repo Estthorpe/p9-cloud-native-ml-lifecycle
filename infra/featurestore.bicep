@@ -78,6 +78,7 @@ resource featureStore 'Microsoft.MachineLearningServices/workspaces@2024-10-01' 
     keyVault: keyVault.id
     applicationInsights: appInsights.id
     featureStoreSettings: {
+      computeRuntime: {sparkRuntimeVersion: '3.4'}
       offlineStoreConnectionName: 'offlineStoreConnectionName'
     }
   }

@@ -1,0 +1,18 @@
+﻿$schema: http://azureml/sdk-2-0/FeatureSet.json
+name: bearing-vibration
+version: "1"
+description: Rolling vibration statistics per bearing (RMS, 1h mean/std, deviation from own baseline). Point-in-time correct.
+entities:
+  - azureml:bearing:1
+specification:
+  path: ./bearing_vibration_spec
+materialization_settings:
+  offline_enabled: true
+  resource:
+    instance_type: standard_e4s_v3
+  spark_configuration:
+    spark.driver.cores: 1
+    spark.driver.memory: 2g
+    spark.executor.cores: 2
+    spark.executor.memory: 2g
+    spark.executor.instances: 1
