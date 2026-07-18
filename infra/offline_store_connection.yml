@@ -1,6 +1,6 @@
 ﻿$schema: http://azureml/sdk-2-0/Connection.json
 name: offlineStoreConnectionName
 type: azure_data_lake_gen2
-target: abfss://offline-store@stclariv2v2zea7e6dd42.dfs.core.windows.net/
+target: /subscriptions/ef005542-7ef3-4995-8b0e-830d1cfe3335/resourceGroups/rg-clariv-foundation/providers/Microsoft.Storage/storageAccounts/stclariv2v2zea7e6dd42/blobServices/default/containers/offline-store
 credentials:
   type: none

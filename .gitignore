@@ -6,3 +6,5 @@ __pycache__/
 
 # Local environment overrides
 .env
+
+joblogs/
