@@ -1,0 +1,18 @@
+﻿$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+display_name: p9-train-bearing-anomaly
+code: .
+command: >-
+  python train.py
+  --sensor-data ${{inputs.sensor_data}}
+  --labels ${{inputs.labels}}
+inputs:
+  sensor_data:
+    type: uri_file
+    path: azureml:sensor-data-real:1
+  labels:
+    type: uri_file
+    path: azureml:anomaly-labels-real:1
+environment: azureml:p9-train-env:1
+compute: azureml:cpu-cluster
+experiment_name: p9-bearing-anomaly
