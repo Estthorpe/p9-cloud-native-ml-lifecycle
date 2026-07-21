@@ -47,20 +47,24 @@ def main() -> None:
 
     sensor = pd.read_csv(args.sensor_data)
     labels = pd.read_csv(args.labels)
+    labels["timestamp"] = pd.to_datetime(labels["timestamp"])
 
     feats = build_features(sensor)
     data = feats.merge(labels, on=["timestamp", "device_id"], how="left")
     data["timestamp"] = pd.to_datetime(data["timestamp"])
     data["is_anomaly"] = data["is_anomaly"].fillna(0).astype(int)
 
-    # Time-based split: first 70% of the timeline trains, last 30% tests.
-    cutoff = data["timestamp"].quantile(0.70)
-    train = data[data["timestamp"] <= cutoff]
-    test = data[data["timestamp"] > cutoff]
+    # Group-aware split: learn failure signature on one bearing,
+    # prove generalization on a bearing the model has never seen.
+    # (Time split starves training: anomalies cluster at end-of-life.)
+    train_devices = ["BEARING_1", "BEARING_2", "BEARING_3"]
+    test_devices = ["BEARING_4"]
+    train = data[data["device_id"].isin(train_devices)]
+    test = data[data["device_id"].isin(test_devices)]
 
     feature_cols = ["rms_value", "rolling_mean_1h", "rolling_std_1h", "deviation_from_baseline"]
 
-    mlflow.lightgbm.autolog()
+    mlflow.lightgbm.autolog(log_models=False)  # we log manually to register the model
     with mlflow.start_run():
         model = lgb.LGBMClassifier(
             n_estimators=200, learning_rate=0.05, scale_pos_weight=50, random_state=42

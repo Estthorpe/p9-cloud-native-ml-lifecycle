@@ -17,6 +17,7 @@ resource cluster 'Microsoft.MachineLearningServices/workspaces/computes@2024-10-
   parent: workspace
   name: 'cpu-cluster'
   location: location
+  identity: {type: 'SystemAssigned'}
   properties: {
     computeType: 'AmlCompute'
     properties: {
