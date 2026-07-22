@@ -23,11 +23,12 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - run: pip install -r requirements-dev.txt
+
       - name: Fetch test data assets
         run: |
-          az extension add --name ml
-          az ml data download --name sensor-data-real --version 1 --download-path ./data_sensor --resource-group rg-clariv-foundation --workspace-name mlw-clariv-p9
-          az ml data download --name anomaly-labels-real --version 1 --download-path ./data_labels --resource-group rg-clariv-foundation --workspace-name mlw-clariv-p9
+          mkdir -p data_sensor data_labels
+          az storage fs file download --file-system datalake --path raw/sensor_data_real.csv --destination ./data_sensor/sensor_data_real.csv --account-name stclariv2v2zea7e6dd42 --auth-mode login
+          az storage fs file download --file-system datalake --path raw/anomaly_labels_real.csv --destination ./data_labels/anomaly_labels_real.csv --account-name stclariv2v2zea7e6dd42 --auth-mode login
       - name: Run evaluation gate
         env:
           P9_SENSOR_DATA_PATH: ./data_sensor/sensor_data_real.csv
