@@ -12,3 +12,5 @@ azure-ai-ml==1.23.0
 azure-identity==1.19.0
 marshmallow==3.23.2
 azureml-mlflow==1.58.0
+matplotlib==3.9.2
+tabulate
