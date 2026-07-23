@@ -1,0 +1,4 @@
+﻿$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: ep-clariv-bearing
+auth_mode: key
+description: P9 bearing anomaly scoring endpoint (Clarivance).

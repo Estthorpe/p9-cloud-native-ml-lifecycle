@@ -10,3 +10,5 @@ __pycache__/
 joblogs/
 
 mlruns/
+
+sample_*.json

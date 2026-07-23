@@ -1,0 +1,12 @@
+﻿$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue
+endpoint_name: ep-clariv-bearing
+model: azureml:bearing-anomaly-model:3
+code_configuration:
+  code: .
+  scoring_script: score.py
+environment: azureml:p9-serve-env:1
+environment_variables:
+  MODEL_VERSION: "3"
+instance_type: Standard_DS2_v2
+instance_count: 1

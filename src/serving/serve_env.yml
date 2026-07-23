@@ -1,0 +1,6 @@
+﻿$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+name: p9-serve-env
+version: "1"
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+conda_file: conda_serve.yml
+description: Serving environment for P9 endpoint (inference server included).
